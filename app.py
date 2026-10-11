@@ -9,6 +9,155 @@ import pandas as pd
 
 from crop_info import crop_info
 
+import streamlit as st
+
+# ---------- PAGE NAVIGATION ----------
+if "page" not in st.session_state:
+    st.session_state.page = "Home"
+
+# ---------- HOMEPAGE DESIGN ----------
+
+st.markdown("""
+<style>
+.stApp {
+    background-color: #F4F8F0;
+    color: #243B2A;
+}
+
+.stApp p,
+.stApp li,
+.stApp label,
+.stMarkdown {
+    color: #243B2A;
+}
+
+h1, h2, h3, h4 {
+    color: #174D32 !important;
+}
+
+.hero {
+    background: linear-gradient(120deg, #174D32, #4C8B52);
+    padding: 45px 25px;
+    border-radius: 18px;
+    text-align: center;
+    color: white !important;
+}
+
+.hero h1, .hero p {
+    color: white !important;
+}
+
+.feature {
+    background-color: #FFFFFF;
+    border: 1px solid #DCE8D7;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 175px;
+}
+
+.feature h3 {
+    color: #174D32 !important;
+}
+
+.feature p {
+    color: #364B3B !important;
+}
+
+.stButton > button {
+    background-color: #287743;
+    color: white !important;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.stButton > button:hover {
+    background-color: #174D32;
+    color: white !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+# ---------- HOME PAGE ----------
+if st.session_state.page == "Home":
+
+    st.markdown("""
+    <div class="hero">
+        <h1>🌱 AgriSense</h1>
+        <p>Smart Crop Recommendations, Made Simple</p>
+        <p>
+        Empowering farmers with machine learning
+        and data-driven crop suggestions.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.write("")
+
+    st.markdown("## Welcome to AgriSense")
+    st.write(
+        "AgriSense is a machine-learning-based crop "
+        "recommendation system that uses soil nutrients "
+        "and environmental conditions to suggest suitable crops."
+    )
+
+    st.markdown("## Explore Our Features")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("""
+        <div class="feature">
+        <h3>🌾 Farmer Mode</h3>
+        <p>Simple soil, moisture, weather and rainfall choices.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div class="feature">
+        <h3>🔬 Expert Mode</h3>
+        <p>Enter N, P, K, pH, temperature, humidity and rainfall.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+        <div class="feature">
+        <h3>🤖 ML Prediction</h3>
+        <p>Get a crop suggestion from the trained ML model.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("## How It Works")
+
+    st.write("**1. Enter data** — Provide soil and weather information.")
+    st.write("**2. Analyse** — The trained model processes the inputs.")
+    st.write("**3. Get a suggestion** — View the recommended crop.")
+
+    st.write("")
+    st.markdown("---")
+
+    left, right = st.columns([2, 1])
+
+    with left:
+        st.caption(
+            "AgriSense provides data-driven suggestions, "
+            "not guaranteed farming outcomes."
+        )
+
+    with right:
+        if st.button("Get Started →", use_container_width=True):
+            st.session_state.page = "Recommendation"
+            st.rerun()
+
+    # Stop the rest of the app from appearing on Home
+    st.stop()
+
+# ---------- EXISTING CROP RECOMMENDATION CODE ----------
+# Keep your existing prediction UI below this line.
+
 # =========================================================
 # PAGE CONFIGURATION
 # =========================================================
